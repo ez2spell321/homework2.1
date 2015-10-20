@@ -11,6 +11,12 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(2);
+    _jspx_dependants.add("/includes/header.html");
+    _jspx_dependants.add("/includes/footer.html");
+  }
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
@@ -42,36 +48,35 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
       out.write("<!DOCTYPE html>\n");
-      out.write("<!--\n");
-      out.write("To change this license header, choose License Headers in Project Properties.\n");
-      out.write("To change this template file, choose Tools | Templates\n");
-      out.write("and open the template in the editor.\n");
-      out.write("-->\n");
       out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <title>Future Value Calculator</title>\n");
-      out.write("        <meta charset=\"UTF-8\">\n");
-      out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
-      out.write("    </head>\n");
-      out.write("    \n");
-      out.write("    <body>\n");
-      out.write("        <form action=\"survey\" method=\"post\">\n");
-      out.write("            <h1>Future Value Calculator</h1>\n");
-      out.write("            \n");
-      out.write("            <label class=\"pad_top\">Investment Amount</label>\n");
-      out.write("            <input type=\"number\" name=\"investmentAmount\" required><br>\n");
-      out.write("            <label class=\"pad_top\">Yearly Interest Rate</label>\n");
-      out.write("            <input type=\"number\" name=\"yearlyInterestRate\" required><br>\n");
-      out.write("            <label class=\"pad_top\">Number Of Years</label>\n");
-      out.write("            <input type=\"number\" name=\"numberOfYears\" required><br>\n");
+      out.write("  <head>\n");
+      out.write("    <title>Future Value Calculator</title>\n");
+      out.write("    <meta charset=\"UTF-8\">\n");
+      out.write("    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
+      out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"styles/style.css\">\n");
+      out.write("  </head>\n");
+      out.write("  <body>");
       out.write("\n");
-      out.write("           \n");
+      out.write("  <form action=\"survey\" method=\"post\">\n");
+      out.write("    <h1>Future Value Calculator</h1>\n");
       out.write("\n");
-      out.write("            <input type=\"submit\" value=\"Calculate\">\n");
-      out.write("        </form>\n");
+      out.write("    <label class=\"pad_top\">Investment Amount</label>\n");
+      out.write("    <input type=\"number\" name=\"investmentAmount\" required><br>\n");
+      out.write("    <label class=\"pad_top\">Yearly Interest Rate</label>\n");
+      out.write("    <input type=\"number\" name=\"yearlyInterestRate\" required><br>\n");
+      out.write("    <label class=\"pad_top\">Number Of Years</label>\n");
+      out.write("    <input type=\"number\" name=\"numberOfYears\" required><br>\n");
       out.write("\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("  <input type=\"submit\" value=\"Calculate\" class=\"align\">\n");
+      out.write("  </form>\n");
+      out.write("\n");
+      out.write("    <footer>\n");
+      out.write("      <p>&copy; Copyright 2015 Greg Batchelor &amp; Nathan Pool</p>\n");
+      out.write("    </footer>\n");
+      out.write("  </body>  \n");
+      out.write("</html>");
+      out.write('\n');
+      out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;
