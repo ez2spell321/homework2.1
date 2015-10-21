@@ -1,17 +1,13 @@
-<%-- 
-    Document   : error
-    Created on : Oct 17, 2015, 7:14:59 PM
-    Author     : ez2sp
---%>
+<!-- copyright 2015 Greg Batchelor Nathan Pool --->
 
+<%@ include file="/includes/header.html" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
-</html>
+
+        <h1>404 Error</h1>
+        <p>
+          The server was not able to find the file you requested.<br> To continue, click the back bouton.
+        </p>
+        
+        
+        <%@ include file="/includes/footer.html" %>
+

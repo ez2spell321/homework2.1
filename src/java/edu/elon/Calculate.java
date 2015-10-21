@@ -1,10 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// <!-- copyright 2015 Greg Batchelor Nathan Pool --->
+
+
 package edu.elon;
 
+import edu.elon.data.Data;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,45 +18,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "calculate", urlPatterns = {"/calculate"})
 public class Calculate extends HttpServlet {
-  
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet calculate</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet calculate at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
-//    }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      
+        doPost(request, response);
         
     }
 
@@ -72,13 +38,31 @@ public class Calculate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      
       String url = "/index.jsp";
       
-      // get parameters
-      double investmentAmount = Double.parseDouble(request.getParameter("investmentAmount"));
-      double yearlyInterestRate = Double.parseDouble(request.getParameter("yearlyInterestRate"));
-      double numberOfYears = Double.parseDouble(request.getParameter("numberOfYears"));
+      // get current action
+      String action = request.getParameter("action");
+      if (action == null) {
+        action = "error";
+      }
       
+      if (action.equals("error")) {      
+        url = "/index.jsp";
+      } else if (action.equals("complete")) {
+        // get parameters
+        double investmentAmount = Double.parseDouble(request.getParameter("investmentAmount"));
+        double yearlyInterestRate = Double.parseDouble(request.getParameter("yearlyInterestRate"));
+        double numberOfYears = Double.parseDouble(request.getParameter("numberOfYears"));
+        
+        Data d = new Data (investmentAmount, yearlyInterestRate, numberOfYears);
+        
+        url = "/output.jsp";
+        request.setAttribute("data", d);
+      }
+      getServletContext()
+        .getRequestDispatcher(url)
+        .forward(request, response);
       
     }
 

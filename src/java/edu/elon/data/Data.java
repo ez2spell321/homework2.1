@@ -1,11 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// <!-- copyright 2015 Greg Batchelor Nathan Pool --->
+
+
 package edu.elon.data;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class Data implements Serializable {
     private double investmentAmount;
@@ -19,11 +19,12 @@ public class Data implements Serializable {
   public Data(double investmentAmount, double yearlyInterestRate, double numberOfYears) {
     this.investmentAmount = investmentAmount;
     this.yearlyInterestRate = yearlyInterestRate;
-    this.numberOfYears = numberOfYears;
+    this.numberOfYears = Math.round(numberOfYears);
   }
 
-  public double getInvestmentAmount() {
-    return investmentAmount;
+  public String getInvestmentAmount() {
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+    return currencyFormat.format(investmentAmount);
   }
 
   public double getNumberOfYears() {
@@ -44,6 +45,12 @@ public class Data implements Serializable {
 
   public void setYearlyInterestRate(double yearlyInterestRate) {
     this.yearlyInterestRate = yearlyInterestRate;
+  }
+  
+  public String getFutureValue() {
+    double futureValue = investmentAmount * Math.pow((1 + yearlyInterestRate/100), numberOfYears);
+    NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(Locale.US);
+    return currencyFormat.format(futureValue);    
   }
   
 
